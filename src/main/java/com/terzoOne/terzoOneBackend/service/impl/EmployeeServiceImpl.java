@@ -39,6 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void saveEmployee(EmployeeDto employeeDto) {
         Employee employee=mapToEmployee(employeeDto);
+        System.out.println(employee);
         employeeRepository.save(employee);
     }
 

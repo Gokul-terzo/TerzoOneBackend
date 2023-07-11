@@ -24,4 +24,5 @@ public class EmployeeDto {
     private LocalDate dob;
     private LocalDate doj;
     private String team;
+    private String profileUrl;
 }

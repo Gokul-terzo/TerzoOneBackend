@@ -27,7 +27,8 @@ public class EmployeeMapper {
                 .mobile(employee.getMobile())
                 .team(employee.getTeam())
                 .workLocation(employee.getWorkLocation())
-                .doj(employee.getDoj()).build();
+                .doj(employee.getDoj())
+                .profileUrl(employee.getProfileUrl()).build();
         return employeeDto;
     }
     public static Employee mapToEmployee(EmployeeDto employeedto){
@@ -43,7 +44,8 @@ public class EmployeeMapper {
                 .mobile(employeedto.getMobile())
                 .team(employeedto.getTeam())
                 .workLocation(employeedto.getWorkLocation())
-                .doj(employeedto.getDoj()).build();
+                .doj(employeedto.getDoj())
+                .profileUrl(employeedto.getProfileUrl()).build();
         return employee;
     }
 }

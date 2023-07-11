@@ -32,6 +32,13 @@ public class TerzoOneController {
         return employeeDto;
     }
 
+    @GetMapping("/employee/{empId}/view")
+    public EmployeeDto getEmployeeDetails(@PathVariable int empId){
+        Employee employee=employeeService.getById(empId);
+        EmployeeDto employeeDto=mapToEmployeeDto(employee);
+        return employeeDto;
+    }
+
     @DeleteMapping("/employee/{empId}/delete")
     public EmployeeDto deleteEmployee(@PathVariable int empId){
         Employee emp=employeeService.getById(empId);

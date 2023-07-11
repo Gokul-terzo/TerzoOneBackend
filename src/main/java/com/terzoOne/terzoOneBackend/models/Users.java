@@ -14,6 +14,6 @@ public class Users {
     private String email;
     private String password;
     private int enabled;
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Authorities authorities;
 }
