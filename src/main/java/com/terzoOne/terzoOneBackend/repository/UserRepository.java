@@ -1,8 +1,10 @@
 package com.terzoOne.terzoOneBackend.repository;
 
-import com.terzoOne.terzoOneBackend.models.Users;
+import com.terzoOne.terzoOneBackend.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Users,String> {
-    Users findByEmail(String email);
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User,Integer> {
+    Optional<User> findByEmail(String email);
 }

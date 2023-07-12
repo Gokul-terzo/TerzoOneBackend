@@ -5,6 +5,7 @@ import com.terzoOne.terzoOneBackend.dto.EmployeeDto;
 import com.terzoOne.terzoOneBackend.models.Employee;
 
 import java.util.List;
+import java.util.SplittableRandom;
 
 public interface EmployeeService {
     List<EmployeeCardDto> findAll();
@@ -14,4 +15,6 @@ public interface EmployeeService {
     void deleteById(int empId);
 
     void saveEmployee(EmployeeDto employeeDto);
+
+    List<EmployeeDto> searchEmployees(String query);
 }

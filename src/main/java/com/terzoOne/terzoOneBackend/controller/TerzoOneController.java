@@ -53,4 +53,10 @@ public class TerzoOneController {
         employeeService.saveEmployee(employeeDto);
         return employeeDto;
     }
+
+    @GetMapping("/employees/search/{query}")
+    public List<EmployeeDto> searchEmployees(@PathVariable String query){
+        List<EmployeeDto> employees = employeeService.searchEmployees(query);
+        return employees;
+    }
 }

@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.terzoOne.terzoOneBackend.mapper.EmployeeMapper.mapToEmployee;
-import static com.terzoOne.terzoOneBackend.mapper.EmployeeMapper.mapToEmployeeCardDto;
+import static com.terzoOne.terzoOneBackend.mapper.EmployeeMapper.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -41,6 +40,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee=mapToEmployee(employeeDto);
         System.out.println(employee);
         employeeRepository.save(employee);
+    }
+
+    @Override
+    public List<EmployeeDto> searchEmployees(String query) {
+        List<Employee> employees= employeeRepository.searchEmployees(query);
+        return employees.stream().map(employee -> mapToEmployeeDto(employee)).collect(Collectors.toList());
     }
 
 }
