@@ -1,5 +1,6 @@
 package com.terzoOne.terzoOneBackend.service.impl;
 
+import com.terzoOne.terzoOneBackend.dto.DashboardEmployeesDto;
 import com.terzoOne.terzoOneBackend.dto.EmployeeCardDto;
 import com.terzoOne.terzoOneBackend.dto.EmployeeDto;
 import com.terzoOne.terzoOneBackend.models.Employee;
@@ -7,6 +8,7 @@ import com.terzoOne.terzoOneBackend.repository.EmployeeRepository;
 import com.terzoOne.terzoOneBackend.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,6 +48,30 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeeDto> searchEmployees(String query) {
         List<Employee> employees= employeeRepository.searchEmployees(query);
         return employees.stream().map(employee -> mapToEmployeeDto(employee)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DashboardEmployeesDto> searchBirthdayBuddies() {
+        List<Employee> employees=employeeRepository.findBirthdayBuddies(LocalDate.now());
+        List<DashboardEmployeesDto> dashboardEmployeesDto;
+        dashboardEmployeesDto=employees.stream().map(e->mapToDashboardEmployeesDto(e)).collect(Collectors.toList());
+        return dashboardEmployeesDto;
+    }
+
+    @Override
+    public List<DashboardEmployeesDto> workAnniversary() {
+        List<Employee> employees=employeeRepository.findAnniversary(LocalDate.now());
+        List<DashboardEmployeesDto> dashboardEmployeesDto;
+        dashboardEmployeesDto=employees.stream().map(e->mapToDashboardEmployeesDto(e)).collect(Collectors.toList());
+        return dashboardEmployeesDto;
+    }
+
+    @Override
+    public List<DashboardEmployeesDto> newHires() {
+        List<Employee> employees=employeeRepository.findNewHires(LocalDate.now());
+        List<DashboardEmployeesDto> dashboardEmployeesDto;
+        dashboardEmployeesDto=employees.stream().map(e->mapToDashboardEmployeesDto(e)).collect(Collectors.toList());
+        return dashboardEmployeesDto;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.terzoOne.terzoOneBackend.controller;
 
+import com.terzoOne.terzoOneBackend.dto.DashboardEmployeesDto;
 import com.terzoOne.terzoOneBackend.dto.EmployeeDto;
 import com.terzoOne.terzoOneBackend.models.Employee;
 import com.terzoOne.terzoOneBackend.models.Holidays;
@@ -32,6 +33,24 @@ public class DashBoardController {
         Employee employee=employeeService.getByEmail(email);
         EmployeeDto employeeDto=mapToEmployeeDto(employee);
         return employeeDto;
+    }
+
+    @GetMapping("/new-hires")
+    public List<DashboardEmployeesDto> getNewHires() {
+        List<DashboardEmployeesDto> dashboardEmployeesDto=employeeService.newHires();
+        return dashboardEmployeesDto;
+    }
+
+    @GetMapping("/work-anniversary")
+    public List<DashboardEmployeesDto> getWorkAnniversary() {
+        List<DashboardEmployeesDto> dashboardEmployeesDto=employeeService.workAnniversary();
+        return dashboardEmployeesDto;
+    }
+
+    @GetMapping("/birthday-buddies")
+    public List<DashboardEmployeesDto> getBirthdayBuddies() {
+        List<DashboardEmployeesDto> dashboardEmployeesDto=employeeService.searchBirthdayBuddies();
+        return dashboardEmployeesDto;
     }
 
 }

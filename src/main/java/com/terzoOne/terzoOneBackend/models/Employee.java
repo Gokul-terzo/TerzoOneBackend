@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Builder
@@ -31,4 +32,10 @@ public class Employee {
     private String team;
     @ColumnDefault("'https://allworldpm.com/wp-content/uploads/2016/10/230x230-avatar-dummy-profile-pic.jpg'")
     private String profileUrl;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Leaves leaves;
+//
+//    @ManyToMany(mappedBy = "employees")
+//    private List<LeavesApplied> leavesApplied;
 }

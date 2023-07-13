@@ -1,5 +1,6 @@
 package com.terzoOne.terzoOneBackend.service;
 
+import com.terzoOne.terzoOneBackend.dto.DashboardEmployeesDto;
 import com.terzoOne.terzoOneBackend.dto.EmployeeCardDto;
 import com.terzoOne.terzoOneBackend.dto.EmployeeDto;
 import com.terzoOne.terzoOneBackend.models.Employee;
@@ -17,6 +18,12 @@ public interface EmployeeService {
     void saveEmployee(EmployeeDto employeeDto);
 
     List<EmployeeDto> searchEmployees(String query);
+
+    List<DashboardEmployeesDto> searchBirthdayBuddies();
+
+    List<DashboardEmployeesDto> workAnniversary();
+
+    List<DashboardEmployeesDto> newHires();
 
     Employee getByEmail(String email);
 }

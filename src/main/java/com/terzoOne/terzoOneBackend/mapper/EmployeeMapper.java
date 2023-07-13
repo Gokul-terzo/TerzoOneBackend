@@ -1,5 +1,6 @@
 package com.terzoOne.terzoOneBackend.mapper;
 
+import com.terzoOne.terzoOneBackend.dto.DashboardEmployeesDto;
 import com.terzoOne.terzoOneBackend.dto.EmployeeCardDto;
 import com.terzoOne.terzoOneBackend.dto.EmployeeDto;
 import com.terzoOne.terzoOneBackend.models.Employee;
@@ -48,5 +49,17 @@ public class EmployeeMapper {
                 .doj(employeedto.getDoj())
                 .profileUrl(employeedto.getProfileUrl()).build();
         return employee;
+    }
+
+    public static DashboardEmployeesDto mapToDashboardEmployeesDto(Employee employee){
+        DashboardEmployeesDto dashboardEmployeesDto=DashboardEmployeesDto.builder()
+                .name(employee.getName())
+                .department(employee.getDepartment())
+                .designation(employee.getDesignation())
+                .dob(employee.getDob())
+                .doj(employee.getDoj())
+                .id(employee.getId())
+                .email(employee.getEmail()).build();
+        return dashboardEmployeesDto;
     }
 }
