@@ -19,7 +19,7 @@ import java.util.List;
 @Builder
 public class User implements UserDetails {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String email;
     private String password;

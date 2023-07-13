@@ -17,4 +17,6 @@ public interface EmployeeService {
     void saveEmployee(EmployeeDto employeeDto);
 
     List<EmployeeDto> searchEmployees(String query);
+
+    Employee getByEmail(String email);
 }

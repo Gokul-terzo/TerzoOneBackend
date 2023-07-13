@@ -4,6 +4,7 @@ import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,6 +26,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**")
                 .permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/employees").hasAnyAuthority("ADMIN","USER")
+                .requestMatchers(HttpMethod.GET,"/api/dashboard/**").hasAnyAuthority("ADMIN","USER")
+                .requestMatchers(HttpMethod.GET,"/api/employee/**").hasAnyAuthority("ADMIN","USER")
+                .requestMatchers(HttpMethod.PUT,"/api/employee/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST,"/api/employee/new").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.DELETE,"/api/employee/**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

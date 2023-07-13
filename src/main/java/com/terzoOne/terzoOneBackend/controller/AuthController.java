@@ -5,9 +5,9 @@ import com.terzoOne.terzoOneBackend.auth.AuthenticationService;
 import com.terzoOne.terzoOneBackend.auth.RegisterRequest;
 import com.terzoOne.terzoOneBackend.auth.AuthenticationResponse;
 import com.terzoOne.terzoOneBackend.dto.UserRole;
-import com.terzoOne.terzoOneBackend.models.Role;
 import com.terzoOne.terzoOneBackend.models.User;
 import com.terzoOne.terzoOneBackend.repository.UserRepository;
+import com.terzoOne.terzoOneBackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +20,9 @@ public class AuthController {
 
     private final UserRepository userRepository;
 
+    private final UserService userService;
     private final AuthenticationService service;
 
-    private User user;
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request){
@@ -33,6 +33,11 @@ public class AuthController {
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request){
         return ResponseEntity.ok(service.authenticate(request));
+    }
+
+    @GetMapping("/delete/{email}")
+    public void deleteUser(@PathVariable String email){
+        userService.deleteUser(email);
     }
 
     @GetMapping("/role/{email}")

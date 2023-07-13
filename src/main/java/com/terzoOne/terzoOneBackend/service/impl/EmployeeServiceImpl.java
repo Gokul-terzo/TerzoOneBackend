@@ -48,4 +48,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees.stream().map(employee -> mapToEmployeeDto(employee)).collect(Collectors.toList());
     }
 
+    @Override
+    public Employee getByEmail(String email) {
+        Employee employee=employeeRepository.getEmployeeByEmail(email);
+        return employee;
+    }
+
 }

@@ -11,7 +11,8 @@ public class EmployeeMapper {
                 .name(employee.getName())
                 .designation(employee.getDesignation())
                 .department(employee.getDepartment())
-                .profileUrl(employee.getProfileUrl()).build();
+                .profileUrl(employee.getProfileUrl())
+                .email(employee.getEmail()).build();
         return employeeCardDto;
     }
     public static EmployeeDto mapToEmployeeDto(Employee employee){

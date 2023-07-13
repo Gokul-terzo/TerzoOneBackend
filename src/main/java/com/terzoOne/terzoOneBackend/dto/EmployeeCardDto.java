@@ -15,4 +15,5 @@ public class EmployeeCardDto {
     private String designation;
     private String department;
     private String profileUrl;
+    private String email;
 }
