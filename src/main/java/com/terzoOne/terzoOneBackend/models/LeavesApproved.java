@@ -6,21 +6,25 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class LeavesApplied {
+public class LeavesApproved {
     @Id
     private int id;
-    private LocalDate date;
-    private String reason;
-    private String note;
-//    @ManyToMany(mappedBy = "leavesApplied")
-//    private List<Employee> employees;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String leaveType;
+
+
+    @ManyToOne
+    private Employee employee;
 }

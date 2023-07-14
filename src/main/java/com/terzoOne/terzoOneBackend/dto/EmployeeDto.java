@@ -1,5 +1,7 @@
 package com.terzoOne.terzoOneBackend.dto;
 
+import com.terzoOne.terzoOneBackend.models.Leaves;
+import com.terzoOne.terzoOneBackend.models.Teams;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

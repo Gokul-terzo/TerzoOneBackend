@@ -16,4 +16,5 @@ public class Teams {
     @Id
     private String team;
     private String manager;
+
 }

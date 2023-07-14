@@ -26,4 +26,10 @@ public interface EmployeeService {
     List<DashboardEmployeesDto> newHires();
 
     Employee getByEmail(String email);
+
+    void savenewEmployee(EmployeeDto employeeDto);
+
+    List<EmployeeDto> sortEmployeesByName(String order);
+
+    List<EmployeeDto> sortEmployeesByDept(String order);
 }

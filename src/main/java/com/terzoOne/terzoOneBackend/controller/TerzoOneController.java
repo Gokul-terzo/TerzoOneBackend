@@ -28,7 +28,7 @@ public class TerzoOneController {
 
     @PostMapping("/employee/new")
     public EmployeeDto newEmployeeCreate(@RequestBody EmployeeDto employeeDto){
-        employeeService.saveEmployee(employeeDto);
+        employeeService.savenewEmployee(employeeDto);
         return employeeDto;
     }
 
@@ -59,6 +59,18 @@ public class TerzoOneController {
     @GetMapping("/employees/search/{query}")
     public List<EmployeeDto> searchEmployees(@PathVariable String query){
         List<EmployeeDto> employees = employeeService.searchEmployees(query);
+        return employees;
+    }
+
+    @GetMapping("/employees/sort-by-name/{query}")
+    public List<EmployeeDto> sortEmployeesByName(@PathVariable String query){
+        List<EmployeeDto> employees = employeeService.sortEmployeesByName(query);
+        return employees;
+    }
+
+    @GetMapping("/employees/sort-by-department/{query}")
+    public List<EmployeeDto> sortEmployeesByDept(@PathVariable String query){
+        List<EmployeeDto> employees = employeeService.sortEmployeesByDept(query);
         return employees;
     }
 }

@@ -3,9 +3,12 @@ package com.terzoOne.terzoOneBackend.models;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,7 +20,6 @@ public class Leaves {
     private int medicalLeave;
     private int paternityLeave;
 
-    @JoinColumn(referencedColumnName = "id")
-    private int employee_id;
-
+    @OneToOne
+    private Employee employee;
 }

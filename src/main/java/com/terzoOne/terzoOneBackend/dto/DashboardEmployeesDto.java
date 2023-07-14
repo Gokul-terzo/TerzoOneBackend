@@ -1,5 +1,6 @@
 package com.terzoOne.terzoOneBackend.dto;
 
+import com.terzoOne.terzoOneBackend.models.Leaves;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,4 +21,5 @@ public class DashboardEmployeesDto {
     private String email;
     private LocalDate dob;
     private LocalDate doj;
+    private Leaves leaves;
 }

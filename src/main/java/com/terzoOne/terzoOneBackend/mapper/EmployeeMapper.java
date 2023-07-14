@@ -16,6 +16,7 @@ public class EmployeeMapper {
                 .email(employee.getEmail()).build();
         return employeeCardDto;
     }
+
     public static EmployeeDto mapToEmployeeDto(Employee employee){
         EmployeeDto employeeDto= EmployeeDto.builder()
                 .id(employee.getId())
@@ -30,7 +31,8 @@ public class EmployeeMapper {
                 .team(employee.getTeam())
                 .workLocation(employee.getWorkLocation())
                 .doj(employee.getDoj())
-                .profileUrl(employee.getProfileUrl()).build();
+                .profileUrl(employee.getProfileUrl())
+                .build();
         return employeeDto;
     }
     public static Employee mapToEmployee(EmployeeDto employeedto){
@@ -59,7 +61,10 @@ public class EmployeeMapper {
                 .dob(employee.getDob())
                 .doj(employee.getDoj())
                 .id(employee.getId())
-                .email(employee.getEmail()).build();
+                .email(employee.getEmail())
+                .profileUrl(employee.getProfileUrl())
+                .build();
         return dashboardEmployeesDto;
     }
+
 }
