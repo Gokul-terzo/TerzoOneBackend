@@ -1,5 +1,6 @@
 package com.terzoOne.terzoOneBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -37,6 +38,7 @@ public class Employee {
     private List<LeavesApproved> leavesApproved;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<LeaveApplied> leavesApplied;
 
 }

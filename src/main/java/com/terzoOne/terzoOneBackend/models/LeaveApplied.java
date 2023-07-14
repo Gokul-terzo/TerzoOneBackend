@@ -1,9 +1,7 @@
 package com.terzoOne.terzoOneBackend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +18,12 @@ import java.util.List;
 @AllArgsConstructor
 public class LeaveApplied {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDate leaveDate;
     private String leaveType;
-
+    private String note;
     @ManyToOne
+    @JsonBackReference
     private Employee employee;
 }
