@@ -18,5 +18,7 @@ void delete(LeaveApplied leaveApplied);
 
 List<LeaveApplied> getByEmpId(Employee employee);
 
+List<LeaveApplied> getApprovedByEmpId(Employee employee);
+
 void approve(LeaveApplied leaveApplied);
 }

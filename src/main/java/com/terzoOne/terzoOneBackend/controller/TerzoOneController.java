@@ -26,7 +26,7 @@ public class TerzoOneController {
         return employees;
     }
 
-    @PostMapping("/employee/new")
+    @PostMapping("/admin/employee/new")
     public EmployeeDto newEmployeeCreate(@RequestBody EmployeeDto employeeDto){
         employeeService.savenewEmployee(employeeDto);
         return employeeDto;
@@ -41,7 +41,7 @@ public class TerzoOneController {
 
 
 
-    @DeleteMapping("/employee/{empId}/delete")
+    @DeleteMapping("/admin/employee/{empId}/delete")
     public EmployeeDto deleteEmployee(@PathVariable int empId){
         Employee emp=employeeService.getById(empId);
         EmployeeDto employeeDto=mapToEmployeeDto(emp);
@@ -49,7 +49,7 @@ public class TerzoOneController {
         return employeeDto;
     }
 
-    @PutMapping("/employee/{empId}/edit")
+    @PutMapping("/admin/employee/{empId}/edit")
     public EmployeeDto editEmployee(@PathVariable("empId") int empId,@RequestBody EmployeeDto employeeDto) {
         employeeDto.setId(empId);
         employeeService.saveEmployee(employeeDto);

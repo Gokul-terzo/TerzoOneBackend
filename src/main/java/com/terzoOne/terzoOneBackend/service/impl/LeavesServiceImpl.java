@@ -25,10 +25,17 @@ public class LeavesServiceImpl implements LeavesService {
             leaves.setEarnedLeave(leaves.getEarnedLeave()-1);
         else
             leaves.setPaternityLeave(leaves.getPaternityLeave()-1);
+        leavesRepository.save(leaves);
     }
 
     @Override
     public void saveLeaves(Leaves leaves) {
         leavesRepository.save(leaves);
+    }
+
+    @Override
+    public Leaves getByEmpId(int id) {
+        Leaves leaves=leavesRepository.getLeavesByEmployee_Id(id);
+        return leaves;
     }
 }

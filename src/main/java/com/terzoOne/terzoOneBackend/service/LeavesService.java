@@ -10,4 +10,6 @@ public interface LeavesService {
 
     void reduceLeave(LeaveApplied leaveApplied);
     void saveLeaves(Leaves leaves);
+
+    Leaves getByEmpId(int id);
 }

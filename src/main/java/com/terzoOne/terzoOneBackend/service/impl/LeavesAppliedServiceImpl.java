@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -39,6 +40,13 @@ public class LeavesAppliedServiceImpl  implements LeavesAppliedService {
     @Override
     public List<LeaveApplied> getByEmpId(Employee employee) {
         List<LeaveApplied> leaveApplied=leavesAppliedRepository.getLeaveAppliedByEmployee(employee);
+        return leaveApplied;
+    }
+
+    @Override
+    public List<LeaveApplied> getApprovedByEmpId(Employee employee) {
+        List<LeaveApplied> leaveApplied=leavesAppliedRepository.getLeaveAppliedByEmployee(employee);
+        leaveApplied=leaveApplied.stream().filter(e->e.getApproved()==1).collect(Collectors.toList());
         return leaveApplied;
     }
 

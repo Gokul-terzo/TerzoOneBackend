@@ -34,8 +34,6 @@ public class Employee {
     @ColumnDefault("'https://allworldpm.com/wp-content/uploads/2016/10/230x230-avatar-dummy-profile-pic.jpg'")
     private String profileUrl;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<LeavesApproved> leavesApproved;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     @JsonManagedReference

@@ -2,6 +2,7 @@ package com.terzoOne.terzoOneBackend.controller;
 
 import com.terzoOne.terzoOneBackend.models.Employee;
 import com.terzoOne.terzoOneBackend.models.LeaveApplied;
+import com.terzoOne.terzoOneBackend.models.Leaves;
 import com.terzoOne.terzoOneBackend.service.EmployeeService;
 import com.terzoOne.terzoOneBackend.service.LeavesAppliedService;
 import com.terzoOne.terzoOneBackend.service.LeavesService;
@@ -18,30 +19,37 @@ public class TimeOffController {
 
     private final LeavesAppliedService leavesAppliedService;
     private final LeavesService leavesService;
-
     private final EmployeeService employeeService;
+
     @PostMapping("/apply-leave")
     public void addLeaveApplication(@RequestBody LeaveApplied leaveApplied){
         leavesAppliedService.saveLeave(leaveApplied);
-        leavesService.reduceLeave(leaveApplied);
     }
 
-    @GetMapping("/view-applied-leaves")
+    @GetMapping("/leave-balance/{empId}")
+    public Leaves getEmployeeLeave(@PathVariable int empId){
+        Leaves leaves=leavesService.getByEmpId(empId);
+        return leaves;
+    }
+
+
+    @GetMapping("/admin/view-applied-leaves")
     public List<LeaveApplied> viewAppliedLeaves(){
         List<LeaveApplied> leavesApplied=leavesAppliedService.getAll();
         return leavesApplied;
     }
 
-    @PostMapping("/approve-leave/{leaveId}")
+    @PostMapping("/admin/approve-leave/{leaveId}")
     public void approveLeave(@PathVariable int leaveId){
         LeaveApplied leaveApplied=leavesAppliedService.getById(leaveId);
+        leavesService.reduceLeave(leaveApplied);
         leavesAppliedService.approve(leaveApplied);
     }
 
     @GetMapping("/my-approved-leave/{empId}")
     public List<LeaveApplied> getApprovedLeave(@PathVariable int empId){
         Employee employee=employeeService.getById(empId);
-        List<LeaveApplied> leavesApproved=leavesAppliedService.getByEmpId(employee);
+        List<LeaveApplied> leavesApproved=leavesAppliedService.getApprovedByEmpId(employee);
         return leavesApproved;
     }
 
