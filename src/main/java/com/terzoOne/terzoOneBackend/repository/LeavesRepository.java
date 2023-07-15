@@ -5,4 +5,5 @@ import com.terzoOne.terzoOneBackend.models.Leaves;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LeavesRepository extends JpaRepository<Leaves,Integer> {
+    Leaves getLeavesByEmployee_Id(int id);
 }

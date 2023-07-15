@@ -1,5 +1,6 @@
 package com.terzoOne.terzoOneBackend.service;
 
+import com.terzoOne.terzoOneBackend.models.Employee;
 import com.terzoOne.terzoOneBackend.models.LeaveApplied;
 import org.springframework.stereotype.Service;
 
@@ -14,4 +15,8 @@ List<LeaveApplied> getAll();
 LeaveApplied getById(int id);
 
 void delete(LeaveApplied leaveApplied);
+
+List<LeaveApplied> getByEmpId(Employee employee);
+
+void approve(LeaveApplied leaveApplied);
 }

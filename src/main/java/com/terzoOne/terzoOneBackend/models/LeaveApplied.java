@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +24,8 @@ public class LeaveApplied {
     private LocalDate leaveDate;
     private String leaveType;
     private String note;
+    @ColumnDefault(value = "0")
+    private int approved;
     @ManyToOne
     @JsonBackReference
     private Employee employee;

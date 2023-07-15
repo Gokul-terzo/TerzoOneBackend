@@ -1,9 +1,10 @@
 package com.terzoOne.terzoOneBackend.controller;
 
+import com.terzoOne.terzoOneBackend.models.Employee;
 import com.terzoOne.terzoOneBackend.models.LeaveApplied;
-import com.terzoOne.terzoOneBackend.models.LeavesApproved;
+import com.terzoOne.terzoOneBackend.service.EmployeeService;
 import com.terzoOne.terzoOneBackend.service.LeavesAppliedService;
-import com.terzoOne.terzoOneBackend.service.LeavesApprovedService;
+import com.terzoOne.terzoOneBackend.service.LeavesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +17,13 @@ import java.util.List;
 public class TimeOffController {
 
     private final LeavesAppliedService leavesAppliedService;
-    private final LeavesApprovedService leavesApprovedService;
+    private final LeavesService leavesService;
+
+    private final EmployeeService employeeService;
     @PostMapping("/apply-leave")
     public void addLeaveApplication(@RequestBody LeaveApplied leaveApplied){
         leavesAppliedService.saveLeave(leaveApplied);
+        leavesService.reduceLeave(leaveApplied);
     }
 
     @GetMapping("/view-applied-leaves")
@@ -31,13 +35,13 @@ public class TimeOffController {
     @PostMapping("/approve-leave/{leaveId}")
     public void approveLeave(@PathVariable int leaveId){
         LeaveApplied leaveApplied=leavesAppliedService.getById(leaveId);
-        leavesAppliedService.delete(leaveApplied);
-        leavesApprovedService.saveEntry(leaveApplied);
+        leavesAppliedService.approve(leaveApplied);
     }
 
     @GetMapping("/my-approved-leave/{empId}")
-    public LeavesApproved getApprovedLeave(@PathVariable int empId){
-        LeavesApproved leavesApproved=leavesApprovedService.getByEmpId(empId);
+    public List<LeaveApplied> getApprovedLeave(@PathVariable int empId){
+        Employee employee=employeeService.getById(empId);
+        List<LeaveApplied> leavesApproved=leavesAppliedService.getByEmpId(employee);
         return leavesApproved;
     }
 

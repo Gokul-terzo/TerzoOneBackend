@@ -1,5 +1,6 @@
 package com.terzoOne.terzoOneBackend.service.impl;
 
+import com.terzoOne.terzoOneBackend.models.Employee;
 import com.terzoOne.terzoOneBackend.models.LeaveApplied;
 import com.terzoOne.terzoOneBackend.repository.LeavesAppliedRepository;
 import com.terzoOne.terzoOneBackend.service.LeavesAppliedService;
@@ -33,5 +34,17 @@ public class LeavesAppliedServiceImpl  implements LeavesAppliedService {
     @Override
     public void delete(LeaveApplied leaveApplied) {
         leavesAppliedRepository.delete(leaveApplied);
+    }
+
+    @Override
+    public List<LeaveApplied> getByEmpId(Employee employee) {
+        List<LeaveApplied> leaveApplied=leavesAppliedRepository.getLeaveAppliedByEmployee(employee);
+        return leaveApplied;
+    }
+
+    @Override
+    public void approve(LeaveApplied leaveApplied) {
+        leaveApplied.setApproved(1);
+        leavesAppliedRepository.save(leaveApplied);
     }
 }
