@@ -26,7 +26,7 @@ public class LeaveApplied {
     private String note;
     @ColumnDefault(value = "0")
     private int approved;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference
     private Employee employee;
 }

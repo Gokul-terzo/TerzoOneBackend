@@ -1,5 +1,6 @@
 package com.terzoOne.terzoOneBackend.controller;
 
+import com.terzoOne.terzoOneBackend.dto.LeaveAppliedDto;
 import com.terzoOne.terzoOneBackend.models.Employee;
 import com.terzoOne.terzoOneBackend.models.LeaveApplied;
 import com.terzoOne.terzoOneBackend.models.Leaves;
@@ -34,19 +35,19 @@ public class TimeOffController {
 
 
     @GetMapping("/admin/view-applied-leaves")
-    public List<LeaveApplied> viewAppliedLeaves(){
-        List<LeaveApplied> leavesApplied=leavesAppliedService.getAll();
+    public List<LeaveAppliedDto> viewAppliedLeaves(){
+        List<LeaveAppliedDto> leavesApplied=leavesAppliedService.getAll();
         return leavesApplied;
     }
 
-    @PostMapping("/admin/approve-leave/{leaveId}")
+    @GetMapping("/admin/approve-leave/{leaveId}")
     public void approveLeave(@PathVariable int leaveId){
         LeaveApplied leaveApplied=leavesAppliedService.getById(leaveId);
         leavesService.reduceLeave(leaveApplied);
         leavesAppliedService.approve(leaveApplied);
     }
 
-    @GetMapping("/my-approved-leave/{empId}")
+    @GetMapping("/my-applied-leave/{empId}")
     public List<LeaveApplied> getApprovedLeave(@PathVariable int empId){
         Employee employee=employeeService.getById(empId);
         List<LeaveApplied> leavesApproved=leavesAppliedService.getApprovedByEmpId(employee);
